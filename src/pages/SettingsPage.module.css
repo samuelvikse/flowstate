@@ -1,0 +1,376 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 800px;
+}
+
+.header {
+  margin-bottom: 8px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.sections {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  color: var(--accent-primary);
+}
+
+.sectionTitle {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.sectionDescription {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* Theme Grid */
+.themeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
+}
+
+.themeCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  position: relative;
+}
+
+.themeCard:hover {
+  border-color: var(--border-color-active);
+}
+
+.themeCard.active {
+  border-color: var(--accent-primary);
+  background: rgba(139, 92, 246, 0.05);
+}
+
+.themePreview {
+  width: 100%;
+  aspect-ratio: 16/10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  border: 2px solid transparent;
+  transition: border-color var(--transition-fast);
+}
+
+.themeColors {
+  display: flex;
+  gap: 4px;
+}
+
+.themeColor {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.themeName {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.themeCheck {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  color: var(--accent-primary);
+}
+
+/* Settings List */
+.settingsList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.settingItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 16px;
+  background: var(--bg-glass);
+  border-radius: var(--radius-md);
+}
+
+.settingInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.settingLabel {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.settingDescription {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Toggle */
+.toggle {
+  width: 48px;
+  height: 28px;
+  padding: 2px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.toggle:hover {
+  border-color: var(--text-muted);
+}
+
+.toggle.on {
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+}
+
+.toggle:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.toggleThumb {
+  display: block;
+  width: 22px;
+  height: 22px;
+  background: white;
+  border-radius: 50%;
+  transition: transform var(--transition-fast);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.toggle.on .toggleThumb {
+  transform: translateX(20px);
+}
+
+/* Shared Access */
+.sharedAccess {
+  padding: 4px;
+}
+
+.accessGranted {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: var(--radius-md);
+  color: var(--accent-success);
+}
+
+.accessTitle {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.accessDescription {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.accessGranted > div {
+  flex: 1;
+}
+
+.accessForm {
+  display: flex;
+  gap: 12px;
+}
+
+.accessForm > *:first-child {
+  flex: 1;
+}
+
+/* Connections */
+.connectionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.connectionItem {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  background: var(--bg-glass);
+  border-radius: var(--radius-md);
+}
+
+.connectionIcon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  color: white;
+}
+
+.connectionInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.connectionName {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.connectionStatus {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.connectionStatus.connected {
+  color: var(--accent-success);
+}
+
+.connectionError {
+  font-size: 11px;
+  color: var(--accent-danger);
+}
+
+.connectionHint {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.spinning {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Security Actions */
+.securityActions {
+  padding: 4px;
+}
+
+.securityHint {
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Install Info */
+.installInfo {
+  padding: 4px;
+}
+
+.installInfo p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.installSteps {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.installStep {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.stepNumber {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-primary);
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 600;
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .themeGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .accessForm {
+    flex-direction: column;
+  }
+
+  .connectionItem {
+    flex-wrap: wrap;
+  }
+
+  .connectionInfo {
+    flex: 1 1 calc(100% - 54px);
+  }
+
+  .connectionItem button {
+    width: 100%;
+    margin-top: 8px;
+  }
+}

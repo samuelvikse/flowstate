@@ -1,0 +1,26 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="aurora" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="50%" stop-color="#06d6a0"/>
+      <stop offset="100%" stop-color="#f472b6"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#06d6a0" stop-opacity="0.4"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" rx="108" fill="#08080c"/>
+
+  <!-- Glow effect -->
+  <circle cx="256" cy="256" r="160" fill="url(#glow)" opacity="0.5"/>
+
+  <!-- Main icon - Sparkle/Flow symbol -->
+  <path d="M256 96L280 180L364 156L316 228L400 256L316 284L364 356L280 332L256 416L232 332L148 356L196 284L112 256L196 228L148 156L232 180L256 96Z" fill="url(#aurora)"/>
+
+  <!-- Center dot -->
+  <circle cx="256" cy="256" r="28" fill="#08080c"/>
+  <circle cx="256" cy="256" r="16" fill="url(#aurora)"/>
+</svg>

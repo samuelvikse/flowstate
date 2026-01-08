@@ -1,0 +1,63 @@
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-normal);
+}
+
+.default {
+  box-shadow: var(--shadow-sm);
+}
+
+.glass {
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.gradient {
+  background: var(--bg-card);
+  position: relative;
+  overflow: hidden;
+}
+
+.gradient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-card);
+  pointer-events: none;
+}
+
+.hoverable:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-color-active);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.padding-none {
+  padding: 0;
+}
+
+.padding-sm {
+  padding: 12px;
+}
+
+.padding-md {
+  padding: 20px;
+}
+
+.padding-lg {
+  padding: 28px;
+}
+
+@media (max-width: 768px) {
+  .padding-md {
+    padding: 16px;
+  }
+
+  .padding-lg {
+    padding: 20px;
+  }
+}
