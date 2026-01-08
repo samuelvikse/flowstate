@@ -1,35 +1,34 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import { google } from 'googleapis';
+import { defineString } from 'firebase-functions/params';
 
 admin.initializeApp();
 
-// Store your Google OAuth credentials in Firebase Functions config
-// Run: firebase functions:config:set google.client_id="YOUR_CLIENT_ID" google.client_secret="YOUR_CLIENT_SECRET" google.refresh_token="YOUR_REFRESH_TOKEN"
-
-const GOOGLE_CLIENT_ID = functions.config().google?.client_id;
-const GOOGLE_CLIENT_SECRET = functions.config().google?.client_secret;
-const GOOGLE_REFRESH_TOKEN = functions.config().google?.refresh_token;
+// Define environment parameters (new Firebase Functions v2 way)
+const GOOGLE_CLIENT_ID = defineString('GOOGLE_CLIENT_ID');
+const GOOGLE_CLIENT_SECRET = defineString('GOOGLE_CLIENT_SECRET');
+const GOOGLE_REFRESH_TOKEN = defineString('GOOGLE_REFRESH_TOKEN');
 
 // Create OAuth2 client
 const getOAuth2Client = () => {
   const oauth2Client = new google.auth.OAuth2(
-    GOOGLE_CLIENT_ID,
-    GOOGLE_CLIENT_SECRET,
+    GOOGLE_CLIENT_ID.value(),
+    GOOGLE_CLIENT_SECRET.value(),
     'https://svbruvik.no' // Your redirect URI
   );
 
   oauth2Client.setCredentials({
-    refresh_token: GOOGLE_REFRESH_TOKEN,
+    refresh_token: GOOGLE_REFRESH_TOKEN.value(),
   });
 
   return oauth2Client;
 };
 
 // Gmail API proxy functions
-export const getGmailMessages = functions.https.onCall(async (data, context) => {
+export const getGmailMessages = functions.https.onCall(async (request) => {
   try {
-    const { maxResults = 20, folder = 'INBOX' } = data;
+    const { maxResults = 20, folder = 'INBOX' } = request.data;
 
     const oauth2Client = getOAuth2Client();
     const gmail = google.gmail({ version: 'v1', auth: oauth2Client });
@@ -62,9 +61,9 @@ export const getGmailMessages = functions.https.onCall(async (data, context) => 
   }
 });
 
-export const deleteGmailMessage = functions.https.onCall(async (data, context) => {
+export const deleteGmailMessage = functions.https.onCall(async (request) => {
   try {
-    const { messageId } = data;
+    const { messageId } = request.data;
 
     const oauth2Client = getOAuth2Client();
     const gmail = google.gmail({ version: 'v1', auth: oauth2Client });
@@ -81,9 +80,9 @@ export const deleteGmailMessage = functions.https.onCall(async (data, context) =
   }
 });
 
-export const permanentlyDeleteGmailMessage = functions.https.onCall(async (data, context) => {
+export const permanentlyDeleteGmailMessage = functions.https.onCall(async (request) => {
   try {
-    const { messageId } = data;
+    const { messageId } = request.data;
 
     const oauth2Client = getOAuth2Client();
     const gmail = google.gmail({ version: 'v1', auth: oauth2Client });
@@ -100,9 +99,9 @@ export const permanentlyDeleteGmailMessage = functions.https.onCall(async (data,
   }
 });
 
-export const sendGmailMessage = functions.https.onCall(async (data, context) => {
+export const sendGmailMessage = functions.https.onCall(async (request) => {
   try {
-    const { rawMessage } = data;
+    const { rawMessage } = request.data;
 
     const oauth2Client = getOAuth2Client();
     const gmail = google.gmail({ version: 'v1', auth: oauth2Client });
@@ -121,9 +120,9 @@ export const sendGmailMessage = functions.https.onCall(async (data, context) => 
   }
 });
 
-export const toggleGmailStar = functions.https.onCall(async (data, context) => {
+export const toggleGmailStar = functions.https.onCall(async (request) => {
   try {
-    const { messageId, isCurrentlyStarred } = data;
+    const { messageId, isCurrentlyStarred } = request.data;
 
     const oauth2Client = getOAuth2Client();
     const gmail = google.gmail({ version: 'v1', auth: oauth2Client });
@@ -144,9 +143,9 @@ export const toggleGmailStar = functions.https.onCall(async (data, context) => {
   }
 });
 
-export const getGmailAttachment = functions.https.onCall(async (data, context) => {
+export const getGmailAttachment = functions.https.onCall(async (request) => {
   try {
-    const { messageId, attachmentId } = data;
+    const { messageId, attachmentId } = request.data;
 
     const oauth2Client = getOAuth2Client();
     const gmail = google.gmail({ version: 'v1', auth: oauth2Client });
@@ -165,9 +164,9 @@ export const getGmailAttachment = functions.https.onCall(async (data, context) =
 });
 
 // Google Calendar API proxy functions
-export const getCalendarEvents = functions.https.onCall(async (data, context) => {
+export const getCalendarEvents = functions.https.onCall(async (request) => {
   try {
-    const { timeMin, timeMax, maxResults = 100 } = data;
+    const { timeMin, timeMax, maxResults = 100 } = request.data;
 
     const oauth2Client = getOAuth2Client();
     const calendar = google.calendar({ version: 'v3', auth: oauth2Client });
@@ -188,9 +187,9 @@ export const getCalendarEvents = functions.https.onCall(async (data, context) =>
   }
 });
 
-export const createCalendarEvent = functions.https.onCall(async (data, context) => {
+export const createCalendarEvent = functions.https.onCall(async (request) => {
   try {
-    const { event } = data;
+    const { event } = request.data;
 
     const oauth2Client = getOAuth2Client();
     const calendar = google.calendar({ version: 'v3', auth: oauth2Client });
@@ -207,9 +206,9 @@ export const createCalendarEvent = functions.https.onCall(async (data, context) 
   }
 });
 
-export const updateCalendarEvent = functions.https.onCall(async (data, context) => {
+export const updateCalendarEvent = functions.https.onCall(async (request) => {
   try {
-    const { eventId, event } = data;
+    const { eventId, event } = request.data;
 
     const oauth2Client = getOAuth2Client();
     const calendar = google.calendar({ version: 'v3', auth: oauth2Client });
@@ -227,9 +226,9 @@ export const updateCalendarEvent = functions.https.onCall(async (data, context) 
   }
 });
 
-export const deleteCalendarEvent = functions.https.onCall(async (data, context) => {
+export const deleteCalendarEvent = functions.https.onCall(async (request) => {
   try {
-    const { eventId } = data;
+    const { eventId } = request.data;
 
     const oauth2Client = getOAuth2Client();
     const calendar = google.calendar({ version: 'v3', auth: oauth2Client });
