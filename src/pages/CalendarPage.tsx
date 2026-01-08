@@ -180,9 +180,9 @@ export function CalendarPage() {
   };
 
   // Combined events for a date (local + google)
-  const eventsForDate = (date: Date) => {
-    return [...localEventsForDate(date), ...googleEventsForDate(date)];
-  };
+  // const eventsForDate = (date: Date) => {
+  //   return [...localEventsForDate(date), ...googleEventsForDate(date)];
+  // };
 
   const shoppingListsForDate = (date: Date) => {
     return shoppingLists.filter(list =>

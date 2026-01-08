@@ -269,6 +269,7 @@ export function MailPage() {
           provider: 'gmail',
           labels: selectedEmail.labels,
           hasAttachment: selectedEmail.hasAttachment,
+          attachments: selectedEmail.attachments || [],
         },
         replyBody,
         replyAttachments.length > 0 ? replyAttachments : undefined

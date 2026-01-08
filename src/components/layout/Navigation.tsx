@@ -27,7 +27,7 @@ const allTabs: { id: TabId; label: string; icon: typeof ShoppingCart; restricted
 
 // Smooth spring animation config
 const springConfig = {
-  type: 'spring',
+  type: 'spring' as const,
   stiffness: 300,
   damping: 25,
   mass: 0.8,

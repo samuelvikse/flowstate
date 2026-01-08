@@ -10,7 +10,7 @@ import {
   ChevronRight,
   Star
 } from 'lucide-react';
-import { format, isToday, isTomorrow, addDays, isBefore, isAfter, startOfDay } from 'date-fns';
+import { format, isToday, isTomorrow, addDays, isAfter, startOfDay } from 'date-fns';
 import { useStore } from '../store/useStore';
 import { Card } from '../components/ui/Card';
 import {
