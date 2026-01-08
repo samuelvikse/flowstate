@@ -8,7 +8,7 @@ import styles from './LoginGate.module.css';
 
 // Passwords for access
 // Main user password (you) and girlfriend password
-const MAIN_PASSWORD = 'samuel2024';
+const MAIN_PASSWORD = 'Doffen58??';
 const GIRLFRIEND_PASSWORD = 'mamma123';
 const VALID_PASSWORDS = [MAIN_PASSWORD, GIRLFRIEND_PASSWORD];
 
