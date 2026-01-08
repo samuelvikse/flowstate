@@ -1,11 +1,12 @@
 // Helper script to generate Google OAuth refresh token
 // Run: node scripts/get-refresh-token.js
 
-const { google } = require('googleapis');
-const readline = require('readline');
+import { google } from 'googleapis';
+import readline from 'readline';
+import dotenv from 'dotenv';
 
 // Load your Google OAuth credentials from .env
-require('dotenv').config();
+dotenv.config();
 
 const GOOGLE_CLIENT_ID = process.env.VITE_GOOGLE_CLIENT_ID;
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET || 'YOUR_CLIENT_SECRET_HERE';
@@ -16,6 +17,19 @@ const SCOPES = [
   'https://www.googleapis.com/auth/gmail.send',
   'https://www.googleapis.com/auth/calendar',
 ];
+
+if (!GOOGLE_CLIENT_ID || GOOGLE_CLIENT_ID === 'your_google_client_id.apps.googleusercontent.com') {
+  console.error('\n❌ Error: VITE_GOOGLE_CLIENT_ID not found in .env file');
+  console.log('Make sure your .env file contains VITE_GOOGLE_CLIENT_ID=...\n');
+  process.exit(1);
+}
+
+if (!GOOGLE_CLIENT_SECRET || GOOGLE_CLIENT_SECRET === 'YOUR_CLIENT_SECRET_HERE') {
+  console.error('\n❌ Error: GOOGLE_CLIENT_SECRET not found in .env file');
+  console.log('Please add this line to your .env file:');
+  console.log('GOOGLE_CLIENT_SECRET=your_actual_client_secret\n');
+  process.exit(1);
+}
 
 const oauth2Client = new google.auth.OAuth2(
   GOOGLE_CLIENT_ID,
@@ -63,9 +77,9 @@ rl.question('Paste the redirect URL here: ', async (redirectUrl) => {
     console.log('\nRefresh Token:', tokens.refresh_token);
     console.log('\n=== Add these to your Firebase Functions config ===\n');
     console.log('Run these commands:\n');
-    console.log(`firebase functions:config:set google.client_id="${GOOGLE_CLIENT_ID}"`);
-    console.log(`firebase functions:config:set google.client_secret="${GOOGLE_CLIENT_SECRET}"`);
-    console.log(`firebase functions:config:set google.refresh_token="${tokens.refresh_token}"`);
+    console.log(`npx firebase functions:config:set google.client_id="${GOOGLE_CLIENT_ID}"`);
+    console.log(`npx firebase functions:config:set google.client_secret="${GOOGLE_CLIENT_SECRET}"`);
+    console.log(`npx firebase functions:config:set google.refresh_token="${tokens.refresh_token}"`);
     console.log('\n=== IMPORTANT: Keep refresh_token SECRET! ===\n');
 
   } catch (error) {
