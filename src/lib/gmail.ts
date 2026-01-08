@@ -349,14 +349,12 @@ export const permanentlyDeleteGmailMessage = async (messageId: string): Promise<
 
   try {
     const response = await fetch(
-      'https://gmail.googleapis.com/gmail/v1/users/me/messages/batchDelete',
+      `https://gmail.googleapis.com/gmail/v1/users/me/messages/${messageId}`,
       {
-        method: 'POST',
+        method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ ids: [messageId] }),
       }
     );
 
