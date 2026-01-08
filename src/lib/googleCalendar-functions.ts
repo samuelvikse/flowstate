@@ -14,6 +14,7 @@ export interface ParsedCalendarEvent {
   allDay: boolean;
   location?: string;
   attendees?: string[];
+  provider?: 'google';
 }
 
 // No authentication needed - Firebase Functions handle it server-side
@@ -53,6 +54,7 @@ const parseCalendarEvent = (event: any): ParsedCalendarEvent => {
     allDay: !event.start?.dateTime,
     location: event.location,
     attendees: event.attendees?.map((a: any) => a.email) || [],
+    provider: 'google',
   };
 };
 

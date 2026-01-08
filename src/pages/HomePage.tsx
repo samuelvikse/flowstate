@@ -17,11 +17,11 @@ import {
   isGoogleCalendarConnected,
   fetchGoogleCalendarEvents,
   type ParsedCalendarEvent
-} from '../lib/googleCalendar';
+} from '../lib/googleCalendar-functions';
 import {
   isGmailConnected,
   fetchGmailMessages
-} from '../lib/gmail';
+} from '../lib/gmail-functions';
 import type { Email } from '../types';
 import styles from './HomePage.module.css';
 

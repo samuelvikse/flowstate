@@ -31,7 +31,7 @@ import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
 import {
-  initCalendarAuth,
+  initGoogleCalendarAuth as initCalendarAuth,
   connectGoogleCalendar,
   disconnectGoogleCalendar,
   isGoogleCalendarConnected,
@@ -39,7 +39,7 @@ import {
   createGoogleCalendarEvent,
   deleteGoogleCalendarEvent,
   type ParsedCalendarEvent
-} from '../lib/googleCalendar';
+} from '../lib/googleCalendar-functions';
 import styles from './CalendarPage.module.css';
 
 export function CalendarPage() {

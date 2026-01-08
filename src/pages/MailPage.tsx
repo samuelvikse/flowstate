@@ -45,9 +45,8 @@ import {
   downloadGmailAttachment,
   getGmailAttachmentPreview,
   toggleGmailStar,
-  type GmailFolder,
-  type EmailAttachment
-} from '../lib/gmail';
+} from '../lib/gmail-functions';
+import type { GmailFolder, EmailAttachment } from '../lib/gmail';
 import type { Email, MailFilter } from '../types';
 import styles from './MailPage.module.css';
 
